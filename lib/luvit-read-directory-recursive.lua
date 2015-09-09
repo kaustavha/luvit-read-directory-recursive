@@ -16,6 +16,7 @@ limitations under the License.
 
 local path = require('path')
 local scandir = require('fs').scandir
+local timer = require('timer')
 
 exports.readdirRecursive = function(baseDir, cb)
   baseDir = baseDir:gsub('%/$', '') -- strip trailing slash
@@ -24,7 +25,6 @@ exports.readdirRecursive = function(baseDir, cb)
   local waitCount = 0
 
   local function readdirRecursive(curDir)
-    waitCount = waitCount + 1
 
     local function prependcurDir(fname)
       return path.join(curDir, fname)
@@ -38,7 +38,8 @@ exports.readdirRecursive = function(baseDir, cb)
 
         if name and type then
           if type == 'directory' then
-            readdirRecursive(prependcurDir(name))
+            waitCount = waitCount + 1
+            timer.setImmediate(readdirRecursive, prependcurDir(name)) -- prevent potential buffer overflows
           elseif type == 'file' then
             table.insert(filesList, prependcurDir(name))
           end
@@ -52,6 +53,6 @@ exports.readdirRecursive = function(baseDir, cb)
       recurser(func)
     end)
   end
-
+  waitCount = waitCount + 1
   readdirRecursive(baseDir)
 end

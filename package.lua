@@ -1,5 +1,5 @@
 return {
-  name = 'luvit-read-directory-recursive',
+  name = 'kaustavha/luvit-walk',
   version = "1.0.0",
   license = "Apache 2",
   homepage = "https://github.com/kaustavha/luvit-read-directory-recursive",
