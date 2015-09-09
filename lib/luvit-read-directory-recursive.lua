@@ -46,7 +46,7 @@ exports.readdirRecursive = function(baseDir, cb)
           recurser(func)
         else
           waitCount = waitCount - 1
-        if waitCount == 0 then return cb(nil, filesList) end
+          if waitCount == 0 then return cb(nil, filesList) end
         end
       end
 
