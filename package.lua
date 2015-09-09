@@ -6,5 +6,5 @@ return {
   description = "Recursively dives through directories and read the contents of all the children directories.",
   tags = {"luvit", "fs", "readdirrecursive" },
   author = { name = 'Kaustav Haldar'},
-  files = { '*.lua' }
+  main = { 'init.lua' }
 }
