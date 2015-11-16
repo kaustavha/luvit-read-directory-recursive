@@ -1,8 +1,8 @@
-# Luvit-read-directory-recursive
+# Luvit-read-directory-recursive AKA luvit-walk
 
 E.g
 ```
-local readdirRecursive = require('luvit-read-directory-recursive').readdirRecursive
+local readdirRecursive = require('luvit-walk').readdirRecursive
 
 readdirRecursive(readdir('/etc', function(k, v) print(table.concat(v, '\n')) end)
 ```
